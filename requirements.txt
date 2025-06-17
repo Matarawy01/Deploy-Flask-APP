@@ -1,0 +1,6 @@
+flask==2.3.3
+gunicorn==21.2.0
+flask-sqlalchemy==3.0.5
+requests==2.31.0
+paho-mqtt==1.6.1
+pytz==2023.3

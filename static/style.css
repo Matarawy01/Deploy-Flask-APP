@@ -1,0 +1,224 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #e9ecef;
+    font-size: 16px; /* Reduced base font size */
+}
+
+.container {
+    max-width: 1200px; /* Reduced container width */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.header {
+    text-align: center;
+    padding: 30px 15px; /* Reduced padding */
+    background-color: #0056b3;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+    font-size: 2.8rem; /* Reduced heading size */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header h1 i {
+    font-size: 2rem; /* Reduced icon size */
+    margin-right: 12px;
+}
+
+.subtitle {
+    font-size: 1.3rem; /* Reduced subtitle size */
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0; /* Reduced margin */
+    gap: 15px;
+}
+
+.tab {
+    padding: 12px 25px; /* Reduced tab size */
+    font-size: 1.2rem; /* Reduced font size */
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab.active, .tab:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.accident-table {
+    background-color: white;
+    padding: 25px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.accident-table h2 {
+    font-size: 1.8rem; /* Reduced heading size */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.accident-table h2 i {
+    font-size: 1.5rem; /* Reduced icon size */
+    margin-right: 8px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem; /* Reduced table text size */
+}
+
+th, td {
+    padding: 15px; /* Reduced padding */
+    text-align: left;
+    border-bottom: 1.5px solid #dee2e6;
+}
+
+th {
+    background-color: #0056b3;
+    color: white;
+    font-size: 1.1rem; /* Reduced header text size */
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+.emergency-row {
+    background-color: #ffe6e6;
+}
+
+.accident-row {
+    background-color: #e6f3ff;
+}
+
+.car-id i {
+    font-size: 1.2rem; /* Reduced icon size */
+    margin-right: 8px;
+}
+
+.coordinates div, .hospital-info div {
+    display: flex;
+    align-items: center;
+    font-size: 1rem; /* Reduced text size */
+    margin-bottom: 6px;
+}
+
+.coordinates i, .hospital-info i {
+    font-size: 1.1rem; /* Reduced icon size */
+    margin-right: 10px;
+}
+
+.action-buttons a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px; /* Adjusted padding for consistency */
+    margin-right: 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem; /* Reduced button text size */
+    transition: background-color 0.3s;
+    width: 140px; /* Fixed width to ensure equal size */
+    justify-content: center; /* Center content within the fixed width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.map-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.directions-btn {
+    background-color: #0056b3;
+    color: white;
+}
+
+.map-btn i, .directions-btn i {
+    font-size: 1.1rem; /* Reduced button icon size */
+    margin-right: 6px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #495057;
+    font-size: 1rem; /* Reduced footer text size */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+    .header h1 {
+        font-size: 2.4rem;
+    }
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    .tab {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+    }
+    th, td {
+        padding: 12px;
+    }
+    .action-buttons a {
+        width: 130px; /* Slightly reduced width for responsiveness */
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    .header h1 i {
+        font-size: 1.6rem;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .tab {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .accident-table h2 {
+        font-size: 1.6rem;
+    }
+    table {
+        font-size: 0.9rem;
+    }
+    th, td {
+        padding: 10px;
+    }
+    .action-buttons a {
+        width: 110px; /* Further reduced width for smaller screens */
+        padding: 6px 12px;
+    }
+}

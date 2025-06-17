@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: emergency-response-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    envVars:
+      - key: SERPAPI_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    disk:
+      name: sqlite-disk
+      mountPath: /opt/render/project/src
+      sizeGB: 1

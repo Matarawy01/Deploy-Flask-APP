@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-car-crash"></i> Accident Monitoring System</h1>
+            <p class="subtitle">Real-time accident tracking and hospital information</p>
+        </div>
+        
+        <div class="nav-tabs">
+            <a href="/" class="tab active">All Records</a>
+            <a href="/accidents" class="tab">Accidents Only</a>
+            <a href="/emergencies" class="tab">Emergencies Only</a>
+        </div>
+        
+        <div class="accident-table">
+            <h2><i class="fas fa-table"></i> Incident Records</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Car ID</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Timestamp</th>
+                            <th>Nearest Hospital</th>
+                            <th>Hospital Info</th>
+                            <th>Map Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for accident in all_accidents %}
+                            {% if accident.show == "Yes" %}
+                                <tr class="{{ 'emergency-row' if accident.__class__.__name__ == 'Emergency' else 'accident-row' }}">
+                                    <td class="car-id"><i class="fas fa-car"></i> {{ accident.car_id }}</td>
+                                    <td>{{ accident.__class__.__name__ }}</td>
+                                    <td>
+                                        <div class="coordinates">
+                                            <div><i class="fas fa-map-marker-alt"></i> {{ accident.latitude }}, {{ accident.longitude }}</div>
+                                        </div>
+                                    </td>
+                                    <td>{{ accident.timestamp.strftime('%Y-%m-%d %I:%M:%S %p') }}</td>
+                                    <td>{{ accident.nearest_hospital }}</td>
+                                    <td>
+                                        <div class="hospital-info">
+                                            <div><i class="fas fa-map-marker-alt"></i> {{ accident.hospital_address }}</div>
+                                            <div><i class="fas fa-phone"></i> {{ accident.hospital_phone }}</div>
+                                        </div>
+                                    </td>
+                                    <td class="action-buttons">
+                                        <a href="https://www.google.com/maps?q={{ accident.latitude }},{{ accident.longitude }}" target="_blank" class="map-btn">
+                                            <i class="fas fa-map"></i> View Location
+                                        </a>
+                                        {% if accident.nearest_hospital != "Not found" %}
+                                            {% if accident.hospital_latitude and accident.hospital_longitude %}
+                                                <a href="https://www.google.com/maps/dir/?api=1&origin={{ accident.latitude }},{{ accident.longitude }}&destination={{ accident.hospital_latitude }},{{ accident.hospital_longitude }}" target="_blank" class="directions-btn">
+                                                    <i class="fas fa-hospital"></i> Direction
+                                                </a>
+                                            {% else %}
+                                                <a href="https://www.google.com/maps/dir/?api=1&origin={{ accident.latitude }},{{ accident.longitude }}&destination={{ accident.nearest_hospital|urlencode }}, {{ accident.hospital_address|urlencode }}" target="_blank" class="directions-btn">
+                                                    <i class="fas fa-hospital"></i> Direction
+                                                </a>
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Accident Monitoring System</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (
+                    (path === '/' && tab.getAttribute('href') === '/') ||
+                    (path === '/accidents' && tab.getAttribute('href') === '/accidents') ||
+                    (path === '/emergencies' && tab.getAttribute('href') === '/emergencies')
+                ) {
+                    tab.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
